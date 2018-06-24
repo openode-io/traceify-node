@@ -1,0 +1,31 @@
+{
+  "name": "traceify-node",
+  "version": "1.0.0",
+  "description": "traceify client for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinlevesque/traceify-node.git"
+  },
+  "keywords": [
+    "logging",
+    "logs"
+  ],
+  "author": "Martin Levesque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martinlevesque/traceify-node/issues"
+  },
+  "homepage": "https://github.com/martinlevesque/traceify-node#readme",
+  "dependencies": {
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
+    "nock": "^9.3.3"
+  }
+}
