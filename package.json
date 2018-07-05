@@ -1,7 +1,7 @@
 {
   "name": "traceify-node",
   "version": "1.0.0",
-  "description": "traceify client for Node.js",
+  "description": "traceify client for Node.js ",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha"
