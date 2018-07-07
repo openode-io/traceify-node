@@ -7,7 +7,7 @@ const mainUrl = "https://traceify.openode.io"
 function _post(path, content, opts = {}) {
   return new Promise((resolve, reject) => {
     const options = {
-      uri: (process.env.URL || mainUrl) + path,
+      uri: mainUrl + path,
       method: 'POST',
       json: content,
       headers: {
@@ -29,7 +29,7 @@ function _post(path, content, opts = {}) {
 function _delete(path, opts = {}) {
   return new Promise((resolve, reject) => {
     const options = {
-      uri: (process.env.URL || mainUrl) + path,
+      uri: mainUrl + path,
       method: 'DELETE',
       headers: {
         "content-type": "application/json",
