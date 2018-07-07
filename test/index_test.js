@@ -85,7 +85,7 @@ describe('Traceify', function() {
   })
 
   describe('search', function() {
-    it("should log properly", function(done) {
+    it("should search properly", function(done) {
       nock('https://traceify.openode.io')
         .post('/api/v1/instances/hello/all/search')
         .reply(200, {
@@ -98,5 +98,34 @@ describe('Traceify', function() {
         done(err)
       })
     })
+  })
+
+  describe('customRequest', function() {
+    it("post", function(done) {
+      nock('https://traceify.openode.io')
+        .post('/api/v1/hello_world')
+        .reply(200, {
+          "result": "success"
+         });
+
+      index({token: 'test', site_name: 'hello'}).customRequest.post('hello_world', { search: 'logg' }).then((result) => {
+        done()
+      }).catch((err) => {
+        done(err)
+      })
+    })
+
+    it("delete", function(done) {
+      nock('https://traceify.openode.io')
+        .delete('/api/v1/hello_world')
+        .reply(200, {});
+
+      index({token: 'test', site_name: 'hello'}).customRequest.delete('hello_world').then((result) => {
+        done()
+      }).catch((err) => {
+        done(err)
+      })
+    })
+
   })
 })
