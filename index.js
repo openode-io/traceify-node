@@ -86,11 +86,11 @@ module.exports = function(opts = {}) {
     },
 
     customRequest: {
-      post: function(path, content, opts) {
+      post: function(path, content) {
         return _post(`/api/${version}/${path}`, content, opts)
       },
 
-      delete: function(path, opts) {
+      delete: function(path) {
         return _delete(`/api/${version}/${path}`, opts)
       }
     }
