@@ -101,6 +101,18 @@ describe('Traceify', function() {
   })
 
   describe('customRequest', function() {
+    it("get", function(done) {
+      nock('https://traceify.openode.io')
+        .get('/api/v1/hello_world')
+        .reply(200, {});
+
+      index({token: 'test', site_name: 'hello'}).customRequest.get('hello_world').then((result) => {
+        done()
+      }).catch((err) => {
+        done(err)
+      })
+    })
+
     it("post", function(done) {
       nock('https://traceify.openode.io')
         .post('/api/v1/hello_world')
@@ -109,6 +121,20 @@ describe('Traceify', function() {
          });
 
       index({token: 'test', site_name: 'hello'}).customRequest.post('hello_world', { search: 'logg' }).then((result) => {
+        done()
+      }).catch((err) => {
+        done(err)
+      })
+    })
+
+    it("patch", function(done) {
+      nock('https://traceify.openode.io')
+        .patch('/api/v1/hello_world')
+        .reply(200, {
+          "result": "success"
+         });
+
+      index({token: 'test', site_name: 'hello'}).customRequest.patch('hello_world', { search: 'logg' }).then((result) => {
         done()
       }).catch((err) => {
         done(err)
@@ -126,6 +152,7 @@ describe('Traceify', function() {
         done(err)
       })
     })
+
 
   })
 })

@@ -4,11 +4,54 @@ const request = require('request')
 const version = "v1"
 const mainUrl = "https://traceify.openode.io"
 
+function _get(path, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      uri: mainUrl + path,
+      method: 'GET',
+      headers: {
+        "content-type": "application/json",
+        "x-auth-token": opts.token
+      }
+    }
+
+    request(options, function (error, response, body) {
+      if ( ! error && response.statusCode == 200) {
+        resolve(body)
+      } else {
+        reject(error || body)
+      }
+    })
+  })
+}
+
 function _post(path, content, opts = {}) {
   return new Promise((resolve, reject) => {
     const options = {
       uri: mainUrl + path,
       method: 'POST',
+      json: content,
+      headers: {
+        "content-type": "application/json",
+        "x-auth-token": opts.token
+      }
+    }
+
+    request(options, function (error, response, body) {
+      if ( ! error && response.statusCode == 200) {
+        resolve(body)
+      } else {
+        reject(error || body)
+      }
+    })
+  })
+}
+
+function _patch(path, content, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      uri: mainUrl + path,
+      method: 'PATCH',
       json: content,
       headers: {
         "content-type": "application/json",
@@ -86,8 +129,16 @@ module.exports = function(opts = {}) {
     },
 
     customRequest: {
+      get: function(path) {
+        return _get(`/api/${version}/${path}`, opts)
+      },
+
       post: function(path, content) {
         return _post(`/api/${version}/${path}`, content, opts)
+      },
+
+      patch: function(path, content) {
+        return _patch(`/api/${version}/${path}`, content, opts)
       },
 
       delete: function(path) {
