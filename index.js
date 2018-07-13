@@ -9,6 +9,7 @@ function _get(path, opts = {}) {
     const options = {
       uri: mainUrl + path,
       method: 'GET',
+      strictSSL: false,
       headers: {
         "content-type": "application/json",
         "x-auth-token": opts.token
@@ -30,6 +31,7 @@ function _post(path, content, opts = {}) {
     const options = {
       uri: mainUrl + path,
       method: 'POST',
+      strictSSL: false,
       json: content,
       headers: {
         "content-type": "application/json",
@@ -52,6 +54,7 @@ function _patch(path, content, opts = {}) {
     const options = {
       uri: mainUrl + path,
       method: 'PATCH',
+      strictSSL: false,
       json: content,
       headers: {
         "content-type": "application/json",
@@ -74,6 +77,7 @@ function _delete(path, opts = {}) {
     const options = {
       uri: mainUrl + path,
       method: 'DELETE',
+      strictSSL: false,
       headers: {
         "content-type": "application/json",
         "x-auth-token": opts.token
