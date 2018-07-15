@@ -87,12 +87,12 @@ describe('Traceify', function() {
   describe('search', function() {
     it("should search properly", function(done) {
       nock('https://traceify.openode.io')
-        .post('/api/v1/instances/hello/all/search')
+        .post('/api/v1/instances/hello/search')
         .reply(200, {
           "result": "success"
          });
 
-      index({token: 'test', site_name: 'hello'}).search('all', { search: 'logg' }).then((result) => {
+      index({token: 'test', site_name: 'hello'}).search({ search: 'logg' }).then((result) => {
         done()
       }).catch((err) => {
         done(err)

@@ -98,8 +98,8 @@ function _log(level, content, opts = {}) {
   return _post(`/api/${version}/instances/${opts.site_name}/${level}/log`, content, opts)
 }
 
-function _search(level, content, opts = {}) {
-  return _post(`/api/${version}/instances/${opts.site_name}/${level}/search`, content, opts)
+function _search(content, opts = {}) {
+  return _post(`/api/${version}/instances/${opts.site_name}/search`, content, opts)
 }
 
 module.exports = function(opts = {}) {
@@ -128,8 +128,8 @@ module.exports = function(opts = {}) {
       return _log("trace", content, opts)
     },
 
-    search: function(level, content) {
-      return _search(level, content, opts)
+    search: function(content) {
+      return _search(content, opts)
     },
 
     customRequest: {

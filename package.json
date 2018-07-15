@@ -1,6 +1,6 @@
 {
   "name": "traceify-node",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "traceify client for Node.js",
   "main": "index.js",
   "scripts": {
