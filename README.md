@@ -19,6 +19,8 @@ the administration dashboard on opeNode:
 const traceify = require('traceify-node')({ token: "your token", site_name: "site name here" })
 ```
 
+All methods available in *traceify* returns a promise.
+
 ### Log with trace level
 
 You can log a simple string:
@@ -95,6 +97,31 @@ You can log using a custom log level:
 
 ```
 traceify.log("mylevel", "string or json")
+```
+
+## Usage in Applications
+
+Usually, you will want to create your own logging package on the top of traceify, or use winston with traceity, for example:
+
+```
+const traceify = require('traceify-node')({ token: "your token", site_name: "site name here" })
+
+module.exports = {
+  mylog: function(level, content) {
+    traceify.log(level, content).then(() => {
+      console.log('logged!')
+    }).catch((err) => {
+      console.error('there was an issue logging')
+      console.error(err)
+    })
+  }
+}
+```
+
+Then everywhere in your application you can just write:
+
+```
+mypackage.mylog('info', 'hello logs!')
 ```
 
 ## License
